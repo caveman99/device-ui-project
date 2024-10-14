@@ -93,6 +93,7 @@ typedef struct _meshtastic_DeviceUIConfig {
     meshtastic_NodeHighlight node_highlight;
 } meshtastic_DeviceUIConfig;
 
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -100,95 +101,78 @@ extern "C" {
 /* Helper constants for enums */
 #define _meshtastic_Theme_MIN meshtastic_Theme_DARK
 #define _meshtastic_Theme_MAX meshtastic_Theme_RED
-#define _meshtastic_Theme_ARRAYSIZE ((meshtastic_Theme)(meshtastic_Theme_RED + 1))
+#define _meshtastic_Theme_ARRAYSIZE ((meshtastic_Theme)(meshtastic_Theme_RED+1))
 
 #define _meshtastic_Language_MIN meshtastic_Language_ENGLISH
 #define _meshtastic_Language_MAX meshtastic_Language_TURKISH
-#define _meshtastic_Language_ARRAYSIZE ((meshtastic_Language)(meshtastic_Language_TURKISH + 1))
+#define _meshtastic_Language_ARRAYSIZE ((meshtastic_Language)(meshtastic_Language_TURKISH+1))
 
 #define meshtastic_DeviceUIConfig_theme_ENUMTYPE meshtastic_Theme
 #define meshtastic_DeviceUIConfig_language_ENUMTYPE meshtastic_Language
 
+
+
+
 /* Initializer values for message structs */
-#define meshtastic_DeviceUIConfig_init_default                                                                                   \
-    {                                                                                                                            \
-        0, 0, 0, _meshtastic_Theme_MIN, 0, _meshtastic_Language_MIN, false, meshtastic_NodeFilter_init_default, false,           \
-            meshtastic_NodeHighlight_init_default                                                                                \
-    }
-#define meshtastic_NodeFilter_init_default                                                                                       \
-    {                                                                                                                            \
-        0, 0, 0, 0, 0, ""                                                                                                        \
-    }
-#define meshtastic_NodeHighlight_init_default                                                                                    \
-    {                                                                                                                            \
-        0, 0, 0, 0, ""                                                                                                           \
-    }
-#define meshtastic_DeviceUIConfig_init_zero                                                                                      \
-    {                                                                                                                            \
-        0, 0, 0, _meshtastic_Theme_MIN, 0, _meshtastic_Language_MIN, false, meshtastic_NodeFilter_init_zero, false,              \
-            meshtastic_NodeHighlight_init_zero                                                                                   \
-    }
-#define meshtastic_NodeFilter_init_zero                                                                                          \
-    {                                                                                                                            \
-        0, 0, 0, 0, 0, ""                                                                                                        \
-    }
-#define meshtastic_NodeHighlight_init_zero                                                                                       \
-    {                                                                                                                            \
-        0, 0, 0, 0, ""                                                                                                           \
-    }
+#define meshtastic_DeviceUIConfig_init_default   {0, 0, 0, _meshtastic_Theme_MIN, 0, _meshtastic_Language_MIN, false, meshtastic_NodeFilter_init_default, false, meshtastic_NodeHighlight_init_default}
+#define meshtastic_NodeFilter_init_default       {0, 0, 0, 0, 0, ""}
+#define meshtastic_NodeHighlight_init_default    {0, 0, 0, 0, ""}
+#define meshtastic_DeviceUIConfig_init_zero      {0, 0, 0, _meshtastic_Theme_MIN, 0, _meshtastic_Language_MIN, false, meshtastic_NodeFilter_init_zero, false, meshtastic_NodeHighlight_init_zero}
+#define meshtastic_NodeFilter_init_zero          {0, 0, 0, 0, 0, ""}
+#define meshtastic_NodeHighlight_init_zero       {0, 0, 0, 0, ""}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define meshtastic_NodeFilter_unknown_switch_tag 1
 #define meshtastic_NodeFilter_offline_switch_tag 2
 #define meshtastic_NodeFilter_public_key_switch_tag 3
-#define meshtastic_NodeFilter_hops_away_tag 4
+#define meshtastic_NodeFilter_hops_away_tag      4
 #define meshtastic_NodeFilter_position_switch_tag 5
-#define meshtastic_NodeFilter_node_name_tag 6
+#define meshtastic_NodeFilter_node_name_tag      6
 #define meshtastic_NodeHighlight_chat_switch_tag 1
 #define meshtastic_NodeHighlight_position_switch_tag 2
 #define meshtastic_NodeHighlight_telemetry_switch_tag 3
-#define meshtastic_NodeHighlight_iaq_switch_tag 4
-#define meshtastic_NodeHighlight_node_name_tag 5
+#define meshtastic_NodeHighlight_iaq_switch_tag  4
+#define meshtastic_NodeHighlight_node_name_tag   5
 #define meshtastic_DeviceUIConfig_screen_brightness_tag 1
 #define meshtastic_DeviceUIConfig_screen_timeout_tag 2
 #define meshtastic_DeviceUIConfig_screen_lock_tag 3
-#define meshtastic_DeviceUIConfig_theme_tag 4
+#define meshtastic_DeviceUIConfig_theme_tag      4
 #define meshtastic_DeviceUIConfig_alert_enabled_tag 5
-#define meshtastic_DeviceUIConfig_language_tag 6
+#define meshtastic_DeviceUIConfig_language_tag   6
 #define meshtastic_DeviceUIConfig_node_filter_tag 7
 #define meshtastic_DeviceUIConfig_node_highlight_tag 8
 
 /* Struct field encoding specification for nanopb */
-#define meshtastic_DeviceUIConfig_FIELDLIST(X, a)                                                                                \
-    X(a, STATIC, SINGULAR, UINT32, screen_brightness, 1)                                                                         \
-    X(a, STATIC, SINGULAR, UINT32, screen_timeout, 2)                                                                            \
-    X(a, STATIC, SINGULAR, BOOL, screen_lock, 3)                                                                                 \
-    X(a, STATIC, SINGULAR, UENUM, theme, 4)                                                                                      \
-    X(a, STATIC, SINGULAR, BOOL, alert_enabled, 5)                                                                               \
-    X(a, STATIC, SINGULAR, UENUM, language, 6)                                                                                   \
-    X(a, STATIC, OPTIONAL, MESSAGE, node_filter, 7)                                                                              \
-    X(a, STATIC, OPTIONAL, MESSAGE, node_highlight, 8)
+#define meshtastic_DeviceUIConfig_FIELDLIST(X, a) \
+X(a, STATIC,   SINGULAR, UINT32,   screen_brightness,   1) \
+X(a, STATIC,   SINGULAR, UINT32,   screen_timeout,    2) \
+X(a, STATIC,   SINGULAR, BOOL,     screen_lock,       3) \
+X(a, STATIC,   SINGULAR, UENUM,    theme,             4) \
+X(a, STATIC,   SINGULAR, BOOL,     alert_enabled,     5) \
+X(a, STATIC,   SINGULAR, UENUM,    language,          6) \
+X(a, STATIC,   OPTIONAL, MESSAGE,  node_filter,       7) \
+X(a, STATIC,   OPTIONAL, MESSAGE,  node_highlight,    8)
 #define meshtastic_DeviceUIConfig_CALLBACK NULL
 #define meshtastic_DeviceUIConfig_DEFAULT NULL
 #define meshtastic_DeviceUIConfig_node_filter_MSGTYPE meshtastic_NodeFilter
 #define meshtastic_DeviceUIConfig_node_highlight_MSGTYPE meshtastic_NodeHighlight
 
-#define meshtastic_NodeFilter_FIELDLIST(X, a)                                                                                    \
-    X(a, STATIC, SINGULAR, BOOL, unknown_switch, 1)                                                                              \
-    X(a, STATIC, SINGULAR, BOOL, offline_switch, 2)                                                                              \
-    X(a, STATIC, SINGULAR, BOOL, public_key_switch, 3)                                                                           \
-    X(a, STATIC, SINGULAR, INT32, hops_away, 4)                                                                                  \
-    X(a, STATIC, SINGULAR, BOOL, position_switch, 5)                                                                             \
-    X(a, STATIC, SINGULAR, STRING, node_name, 6)
+#define meshtastic_NodeFilter_FIELDLIST(X, a) \
+X(a, STATIC,   SINGULAR, BOOL,     unknown_switch,    1) \
+X(a, STATIC,   SINGULAR, BOOL,     offline_switch,    2) \
+X(a, STATIC,   SINGULAR, BOOL,     public_key_switch,   3) \
+X(a, STATIC,   SINGULAR, INT32,    hops_away,         4) \
+X(a, STATIC,   SINGULAR, BOOL,     position_switch,   5) \
+X(a, STATIC,   SINGULAR, STRING,   node_name,         6)
 #define meshtastic_NodeFilter_CALLBACK NULL
 #define meshtastic_NodeFilter_DEFAULT NULL
 
-#define meshtastic_NodeHighlight_FIELDLIST(X, a)                                                                                 \
-    X(a, STATIC, SINGULAR, BOOL, chat_switch, 1)                                                                                 \
-    X(a, STATIC, SINGULAR, BOOL, position_switch, 2)                                                                             \
-    X(a, STATIC, SINGULAR, BOOL, telemetry_switch, 3)                                                                            \
-    X(a, STATIC, SINGULAR, BOOL, iaq_switch, 4)                                                                                  \
-    X(a, STATIC, SINGULAR, STRING, node_name, 5)
+#define meshtastic_NodeHighlight_FIELDLIST(X, a) \
+X(a, STATIC,   SINGULAR, BOOL,     chat_switch,       1) \
+X(a, STATIC,   SINGULAR, BOOL,     position_switch,   2) \
+X(a, STATIC,   SINGULAR, BOOL,     telemetry_switch,   3) \
+X(a, STATIC,   SINGULAR, BOOL,     iaq_switch,        4) \
+X(a, STATIC,   SINGULAR, STRING,   node_name,         5)
 #define meshtastic_NodeHighlight_CALLBACK NULL
 #define meshtastic_NodeHighlight_DEFAULT NULL
 
@@ -203,9 +187,9 @@ extern const pb_msgdesc_t meshtastic_NodeHighlight_msg;
 
 /* Maximum encoded size of messages (where known) */
 #define MESHTASTIC_MESHTASTIC_DEVICE_UI_PB_H_MAX_SIZE meshtastic_DeviceUIConfig_size
-#define meshtastic_DeviceUIConfig_size 80
-#define meshtastic_NodeFilter_size 36
-#define meshtastic_NodeHighlight_size 25
+#define meshtastic_DeviceUIConfig_size           80
+#define meshtastic_NodeFilter_size               36
+#define meshtastic_NodeHighlight_size            25
 
 #ifdef __cplusplus
 } /* extern "C" */

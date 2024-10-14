@@ -8,6 +8,13 @@
 
 PB_BIND(meshtastic_DeviceUIConfig, meshtastic_DeviceUIConfig, AUTO)
 
+
 PB_BIND(meshtastic_NodeFilter, meshtastic_NodeFilter, AUTO)
 
+
 PB_BIND(meshtastic_NodeHighlight, meshtastic_NodeHighlight, AUTO)
+
+
+
+
+
