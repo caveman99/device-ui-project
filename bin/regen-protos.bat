@@ -1,1 +1,1 @@
-cd protobufs && ..\nanopb-0.4.8\generator-bin\protoc.exe --nanopb_out=-v:..\src -I=..\protobufs meshtastic\*.proto
+cd protobufs && ..\nanopb-0.4.8\generator-bin\protoc.exe --experimental_allow_proto3_optional "--nanopb_out=-S.cpp -v:..\lib\mesh\generated" -I=..\protobufs\ ..\protobufs\meshtastic\*.proto
